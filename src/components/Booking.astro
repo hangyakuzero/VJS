@@ -1,0 +1,59 @@
+---
+import { SITE } from '../data/content';
+---
+
+<section id="book" class="py-20 md:py-32 scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="rounded-[32px] overflow-hidden grid lg:grid-cols-2 bg-ink text-cream">
+      <div class="relative p-8 md:p-14 flex flex-col justify-center overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1400&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover opacity-25" />
+        <div class="relative" data-reveal>
+          <p class="text-[11px] font-bold uppercase tracking-widest2 text-brass mb-3">Final chapter — Book consultation</p>
+          <h2 class="font-display text-3xl md:text-5xl leading-tight">Your home, factory-direct. Let’s talk this week.</h2>
+          <p class="mt-4 text-cream/70 leading-relaxed">Free site visit + measurement anywhere in Bangalore. Fixed quote in 48 hours. No advance till you approve 3D designs.</p>
+          <ul class="mt-7 space-y-3 text-sm font-semibold">
+            <li class="flex gap-3 items-center"><span class="w-9 h-9 rounded-full bg-cream/10 grid place-items-center">✆</span>{SITE.phoneDisplay} · {SITE.hours}</li>
+            <li class="flex gap-3 items-center"><span class="w-9 h-9 rounded-full bg-cream/10 grid place-items-center">✉</span>{SITE.email}</li>
+            <li class="flex gap-3 items-center"><span class="w-9 h-9 rounded-full bg-cream/10 grid place-items-center">◉</span><span class="text-cream/80 font-medium">{SITE.address}</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-cream text-ink p-8 md:p-14" data-reveal>
+        <form id="book-form" class="flex flex-col gap-4">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="flex flex-col gap-1.5 text-sm font-bold">Name
+              <input required name="name" placeholder="Ananya Sharma" class="text-base font-medium bg-white border border-ink/10 rounded-xl px-4 py-3 outline-none focus:border-wood" />
+            </label>
+            <label class="flex flex-col gap-1.5 text-sm font-bold">Phone
+              <input required name="phone" type="tel" pattern="[0-9+ ]{10,15}" placeholder="+91 ..." class="text-base font-medium bg-white border border-ink/10 rounded-xl px-4 py-3 outline-none focus:border-wood" />
+            </label>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="flex flex-col gap-1.5 text-sm font-bold">Service
+              <select name="service" class="text-base font-medium bg-white border border-ink/10 rounded-xl px-4 py-3 outline-none focus:border-wood">
+                <option>Full home interior</option>
+                <option>Modular kitchen</option>
+                <option>Wardrobes & storages</option>
+                <option>Commercial space</option>
+              </select>
+            </label>
+            <label class="flex flex-col gap-1.5 text-sm font-bold">Budget
+              <select name="budget" class="text-base font-medium bg-white border border-ink/10 rounded-xl px-4 py-3 outline-none focus:border-wood">
+                <option>₹1.5–3L (single space)</option>
+                <option>₹3–7L (kitchen / 1BHK)</option>
+                <option selected>₹7–15L (2–3BHK)</option>
+                <option>₹15L+ (villa / commercial)</option>
+              </select>
+            </label>
+          </div>
+          <label class="flex flex-col gap-1.5 text-sm font-bold">Tell us about your space
+            <textarea name="message" rows="3" placeholder="3BHK in Whitefield, possession in June, need kitchen + wardrobes…" class="text-base font-medium bg-white border border-ink/10 rounded-xl px-4 py-3 outline-none focus:border-wood resize-none"></textarea>
+          </label>
+          <button type="submit" data-whatsapp={SITE.whatsapp} class="bg-ink text-cream font-bold py-4 rounded-xl hover:bg-wood active:bg-wood transition-colors">Book Consultation → via WhatsApp</button>
+          <p class="text-xs text-smoke text-center">Submitting opens WhatsApp with your details pre-filled. We reply within 4 working hours.</p>
+        </form>
+        <div id="book-success" class="hidden mt-4 bg-moss/15 border border-moss/30 text-moss font-bold text-sm rounded-xl px-4 py-3">✓ Request ready — we’ve opened WhatsApp. Prefer email? Write to {SITE.email}.</div>
+      </div>
+    </div>
+  </div>
+</section>

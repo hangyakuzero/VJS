@@ -1,0 +1,43 @@
+---
+// Pinned doorway portal: scroll turns a dark factory view into a bright home
+// by growing a rounded "doorway" mask full-screen. Pure CSS sticky + GSAP scrub.
+---
+
+<section data-portal class="relative bg-ink h-[185vh] md:h-[260vh]">
+  <div class="sticky top-0 h-screen overflow-hidden bg-ink text-cream">
+    <!-- dark layer: the factory floor -->
+    <img
+      data-portal-factory
+      src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?q=80&w=2000&auto=format&fit=crop"
+      alt="Inside the VJS furniture factory"
+      class="absolute inset-0 w-full h-full object-cover opacity-40"
+    />
+    <div class="absolute inset-0 bg-ink/55"></div>
+    <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6" data-portal-dark-caption>
+      <p class="text-[11px] font-bold uppercase tracking-widest2 text-ember mb-4">Intermission — you are here</p>
+      <p class="font-display text-3xl sm:text-4xl md:text-6xl leading-tight">You are standing<br />on the factory floor.</p>
+      <p class="text-cream/60 text-sm mt-5 font-semibold">Yes, you. Keep scrolling — step inside ↓</p>
+    </div>
+
+    <!-- bright layer: the finished home, revealed through a growing doorway -->
+    <div class="absolute inset-0 z-20" data-portal-door style="clip-path: inset(36% 39% 36% 39% round 200px);">
+      <img
+        src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000&auto=format&fit=crop"
+        alt="Finished VJS home interior"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent"></div>
+      <div class="absolute bottom-12 inset-x-0 text-center px-6" data-portal-bright-caption style="opacity: 0;">
+        <p class="text-[11px] font-bold uppercase tracking-widest2 text-ember mb-2">…and this is where it ends up</p>
+        <p class="font-display text-3xl md:text-5xl text-cream">From sawdust to sofa — one team.</p>
+      </div>
+    </div>
+
+    <!-- doorway frame hint -->
+    <div class="absolute inset-0 z-30 pointer-events-none grid place-items-center" data-portal-frame>
+      <div class="border-2 border-cream/40 rounded-[120px] md:rounded-[200px] px-6 py-10 md:px-14 md:py-24">
+        <p class="text-[11px] font-bold uppercase tracking-widest2 text-cream/70">scroll to enter</p>
+      </div>
+    </div>
+  </div>
+</section>

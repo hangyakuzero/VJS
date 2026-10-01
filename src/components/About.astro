@@ -1,0 +1,36 @@
+---
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="about" class="py-20 md:py-32 scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+    <div class="relative split-sticky order-2 md:order-1 mb-8 md:mb-0" data-reveal>
+      <div class="rounded-[28px] overflow-hidden aspect-[4/5] max-h-[600px] w-full">
+        <img data-parallax data-speed="slow" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1400&auto=format&fit=crop" alt="VJS Studios design team in Bangalore" class="w-full h-full object-cover" />
+      </div>
+      <div class="absolute -bottom-6 -right-2 md:right-8 bg-ink text-cream rounded-2xl p-6 max-w-[260px] shadow-xl border border-ember/40" data-speed="fast">
+        <p class="font-display text-3xl">VJS <span class="text-ember">✦</span></p>
+        <p class="text-sm text-cream/70 mt-1">Factory + Studio under one roof. No middlemen, no markups, no finger-pointing.</p>
+      </div>
+    </div>
+    <div class="order-1 md:order-2">
+      <SectionHeading eyebrow="About us" title="A Bangalore studio with sawdust in its DNA." desc="VJS started as a furniture factory supplying kitchens and wardrobes across Karnataka. We opened the studio so homeowners and businesses could buy directly — designer taste at manufacturer cost." />
+      <ul class="mt-8 space-y-4">
+        {[
+          ['Factory-first quality', 'BWP plywood, 1mm edge-banding, Blum/Hettich-grade hardware. Every module passes a 21-point QC before dispatch.'],
+          ['Designed for Bangalore life', 'Cross-ventilation, pooja niches, inverter corners, maid-room storage — details big-city catalogues miss.'],
+          ['One contract, one throat to choke', 'Design, civil, electrical, factory and install — single quote, single project manager, daily photo updates.'],
+        ].map(([t, d]) => (
+          <li class="flex gap-4" data-reveal>
+            <span class="shrink-0 w-10 h-10 rounded-full bg-wood text-cream grid place-items-center font-bold">✓</span>
+            <div><p class="font-bold">{t}</p><p class="text-smoke text-sm leading-relaxed mt-1">{d}</p></div>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-8 flex flex-wrap gap-3" data-reveal>
+        <a href="#book" class="bg-ink text-cream font-bold px-7 py-3.5 rounded-full hover:bg-wood transition-colors">Book Consultation</a>
+        <a href="#work" class="border border-ink/15 font-bold px-7 py-3.5 rounded-full hover:bg-ink hover:text-cream transition-colors">See our work</a>
+      </div>
+    </div>
+  </div>
+</section>

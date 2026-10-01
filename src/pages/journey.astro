@@ -1,0 +1,355 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, LINEUP, JOURNEY_PHOTOS } from '../data/content';
+---
+
+<BaseLayout
+  title="Studio to Home — The Model Becomes the Room | VJS Studios"
+  description="Every room starts as a model. Scroll from our Bangalore studio to the factory floor to a finished home. Pick your materials along the way."
+>
+  <canvas id="journey-canvas" class="fixed inset-0 w-full h-full block" aria-hidden="true"></canvas>
+
+  <!-- vignette -->
+  <div class="fixed inset-0 z-20 pointer-events-none" aria-hidden="true"
+    style="background: radial-gradient(ellipse at center, transparent 52%, rgba(10,8,6,0.42) 100%);"></div>
+
+  <!-- chrome -->
+  <div class="fixed top-0 inset-x-0 z-30 flex items-center justify-between px-5 md:px-8 py-5 mix-blend-difference">
+    <a href="/" class="text-[11px] font-bold uppercase tracking-widest2 text-cream">VJS Studios</a>
+    <p class="text-[11px] font-bold uppercase tracking-widest2 text-cream/70">Bangalore · Est. 2006</p>
+  </div>
+  <div id="progress-hairline" class="fixed top-0 left-0 h-[2px] bg-ember z-40 w-0"></div>
+
+  <nav class="fixed right-5 md:right-8 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-4" aria-label="Sections">
+    {['Model', 'Factory', 'Home'].map((label, i) => (
+      <button data-dot={i} class="dot group flex items-center gap-3 justify-end" aria-label={label}>
+        <span class="text-[10px] font-bold uppercase tracking-widest2 text-cream opacity-0 group-hover:opacity-100 transition-opacity">{label}</span>
+        <span class="dot-mark block w-1.5 h-1.5 rounded-full bg-cream/50 transition-all"></span>
+      </button>
+    ))}
+  </nav>
+
+  <div id="journey-track" class="relative z-10 text-cream">
+
+    <!-- 0 · INTRO -->
+    <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-ink" data-scene="00">
+      <p class="text-[11px] font-bold uppercase tracking-widest2 text-cream/60 mb-6">VJS Studios · Bangalore</p>
+      <h1 class="font-display text-[clamp(2.8rem,9vw,8rem)] leading-[0.92] tracking-tight">
+        From our studio<br />to <span class="text-ember">your home.</span>
+      </h1>
+      <p class="mt-8 text-cream/50 text-sm font-semibold">Factory-direct interiors · 18 years · 10-year warranty</p>
+      <p class="mt-12 text-ember text-xs font-bold uppercase tracking-widest2 animate-bounce">Scroll ↓</p>
+    </section>
+
+    <!-- ACT 01a · THE MODEL (3D: macro → wide dolly) -->
+    <section id="beat-model" class="relative min-h-[220vh]" data-scene="01">
+      <img src={JOURNEY_PHOTOS.model} alt="Architectural scale model on a drafting table"
+        class="fallback-photo" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+      <div class="sticky top-0 h-screen flex items-end pb-14 md:pb-20 px-5 md:px-8 pointer-events-none">
+        <div class="max-w-4xl">
+          <span class="block text-cream/[0.05] text-[38vw] leading-[0.72] font-display -mb-[10vw] select-none" aria-hidden="true">01</span>
+          <p class="text-[11px] font-bold uppercase tracking-widest2 text-ember mb-5">Act 01 — Scale<span class="block w-10 h-px bg-ember/60 mt-2"></span></p>
+          <h2 class="font-display text-[clamp(2.6rem,8.5vw,7.5rem)] leading-[0.9] tracking-tight">
+            Every room starts<br />as a model.
+          </h2>
+          <p class="mt-6 text-cream/70 max-w-xl text-sm md:text-base leading-relaxed">
+            You are looking at a room that doesn't exist. It's 1:20 scale, it sits
+            on a desk, and in 45 days you will live inside it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSITION (3D: fog flight model → room) -->
+    <section id="beat-room" class="relative min-h-[200vh] bg-transparent" data-scene="01">
+      <img src={JOURNEY_PHOTOS.room} alt="The model, grown into a real warm living room"
+        class="fallback-photo" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+      <div class="sticky top-0 h-screen pointer-events-none" aria-hidden="true"></div>
+    </section>
+
+    <!-- ACT 02 · FACTORY (3D: charcoal flight → hold) -->
+    <section id="beat-factory" class="relative min-h-[220vh]" data-scene="02">
+      <img src={JOURNEY_PHOTOS.factory} alt="Inside the VJS furniture factory"
+        class="fallback-photo" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+      <div class="sticky top-0 h-screen flex items-center justify-end px-5 md:px-8">
+        <div class="max-w-2xl text-right">
+          <span class="block text-cream/[0.05] text-[38vw] leading-[0.72] font-display -mb-[10vw] select-none" aria-hidden="true">02</span>
+          <p class="text-[11px] font-bold uppercase tracking-widest2 text-ember mb-5">Act 02 — Make<span class="block w-10 h-px bg-ember/60 mt-2 ml-auto"></span></p>
+          <h2 class="font-display text-[clamp(2.6rem,8.5vw,7.5rem)] leading-[0.9] tracking-tight">
+            Cut, pressed<br />&amp; checked<br />in-house.
+          </h2>
+          <p class="mt-6 text-cream/70 text-sm md:text-base leading-relaxed">
+            Everything here is cut, edge-banded and QC'd on our own floor —
+            18 years, no outsourcing. Like what you see? Pick your materials next.
+          </p>
+          <div class="mt-8 flex flex-col gap-3">
+            {[
+              'BWP plywood, precision-cut',
+              'Soft-close everything',
+              '10 years, in writing',
+            ].map((text) => (
+              <div class="exhibit flex items-center justify-end gap-4 border-b border-cream/10 pb-3">
+                <span class="w-2 h-2 bg-ember shrink-0" aria-hidden="true"></span>
+                <p class="text-cream/80 text-sm md:text-base font-semibold">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE LINEUP — fresh off the factory floor: pick what yours is built from -->
+    <section id="beat-lineup" class="relative bg-[#0d0b09] overflow-hidden" data-scene="02">
+      <div class="min-h-screen flex flex-col justify-center px-5 md:px-8 py-20 max-w-6xl mx-auto w-full">
+        <p class="text-[11px] font-bold uppercase tracking-widest2 text-ember mb-4">Material selection<span class="block w-10 h-px bg-ember/60 mt-2"></span></p>
+        <h2 class="font-display text-[clamp(2.4rem,7vw,6rem)] leading-[0.92] tracking-tight">You saw where<br />it's built.</h2>
+        <p class="mt-5 text-cream/60 max-w-xl text-sm md:text-base leading-relaxed">
+          Now pick what yours is built from. Three categories, nine options —
+          or skip it and we'll bring the whole library to your consultation.
+        </p>
+        <p class="mt-4 text-xs font-bold uppercase tracking-widest2 text-cream/50">
+          <span id="lock-count">0 of 3 locked</span> · <a href="#beat-home" data-scrollto class="text-ember underline underline-offset-4">Skip →</a>
+        </p>
+
+        <div class="mt-10 flex flex-col gap-10">
+          {LINEUP.map((cat) => (
+            <div>
+              <div class="flex items-baseline gap-4 mb-4">
+                <h3 class="font-display text-2xl md:text-3xl">{cat.title}</h3>
+                <p class="text-[11px] font-bold uppercase tracking-widest2 text-cream/40">{cat.sub}</p>
+                <span class="flex-1 h-px bg-cream/10"></span>
+                <span data-cat-state={cat.key} class="text-[11px] font-bold uppercase tracking-widest2 text-cream/40">undecided</span>
+              </div>
+              <div class="grid grid-cols-3 gap-3 md:gap-5">
+                {cat.suspects.map((s, i) => (
+                  <button data-suspect data-cat={cat.key} data-id={s.id} data-name={s.name}
+                    class="suspect group relative text-left rounded-2xl overflow-hidden border border-cream/10 bg-cream/[0.03] hover:border-cream/30 transition-colors">
+                    <span class="absolute top-2 left-2 z-10 text-[10px] font-bold bg-ink/70 backdrop-blur px-2 py-1 rounded-md tracking-widest">P{i + 1}</span>
+                    <span class="stamp absolute inset-0 z-10 hidden items-center justify-center">
+                      <span class="text-[11px] font-bold uppercase tracking-widest2 bg-ember text-cream px-3 py-1.5 rounded-full -rotate-6">Locked in</span>
+                    </span>
+                    <span class="block aspect-[4/5] overflow-hidden bg-ink">
+                      <img src={s.img} alt={`${s.name} material swatch`} loading="lazy" decoding="async"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        onerror="this.style.display='none'" />
+                    </span>
+                    <span class="block p-3 md:p-4">
+                      <span class="block font-display text-lg md:text-xl leading-tight">{s.name}</span>
+                      <span class="block text-[10px] font-bold uppercase tracking-widest2 text-ember mt-1">{s.aka}</span>
+                      <span class="hidden md:block text-cream/55 text-sm mt-2 leading-snug">{s.rap}</span>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 03 · HOME (3D: honey flight → hold + push) -->
+    <section id="beat-home" class="relative min-h-[220vh]" data-scene="03">
+      <img src={JOURNEY_PHOTOS.home} alt="Sunlight streaming into a finished VJS living room"
+        class="fallback-photo" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+      <div class="sticky top-0 h-screen flex items-end pb-14 md:pb-20 px-5 md:px-8">
+        <div class="max-w-4xl w-full">
+          <span class="block text-cream/[0.05] text-[38vw] leading-[0.72] font-display -mb-[10vw] select-none" aria-hidden="true">03</span>
+          <p class="text-[11px] font-bold uppercase tracking-widest2 text-ember mb-5">Act 03 — Home<span class="block w-10 h-px bg-ember/60 mt-2"></span></p>
+          <h2 class="font-display text-[clamp(2.6rem,8.5vw,7.5rem)] leading-[0.9] tracking-tight">
+            From sawdust<br />to sofa.
+          </h2>
+          <p class="mt-6 text-cream/70 max-w-xl text-sm md:text-base leading-relaxed">
+            Installed, cleaned, snagged, warranted for ten years. 1,200+ homes
+            across Bangalore. This is the part you actually live in.
+          </p>
+          <div id="crew-recap" class="mt-6 flex flex-wrap gap-2">
+            <span class="text-[10px] font-bold uppercase tracking-widest2 text-cream/50 py-2">Your crew:</span>
+            <span data-chip="wood" class="text-[11px] font-bold uppercase tracking-widest2 border border-cream/25 px-4 py-2 rounded-full">Wood · TBD</span>
+            <span data-chip="fabric" class="text-[11px] font-bold uppercase tracking-widest2 border border-cream/25 px-4 py-2 rounded-full">Fabric · TBD</span>
+            <span data-chip="finish" class="text-[11px] font-bold uppercase tracking-widest2 border border-cream/25 px-4 py-2 rounded-full">Finish · TBD</span>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3 pointer-events-auto">
+            <a id="book-cta" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener"
+              class="bg-cream text-ink font-bold px-8 py-4 rounded-full hover:bg-ember hover:text-cream transition-colors">Book a free consultation</a>
+            <a href="/" class="border border-cream/30 text-cream font-bold px-8 py-4 rounded-full hover:bg-cream/10 transition-colors">Back to the site</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINALE -->
+    <section id="beat-finale" class="relative bg-ink overflow-hidden" data-scene="04">
+      <div class="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 py-24">
+        <p class="text-[11px] font-bold uppercase tracking-widest2 text-cream/50 mb-6">VJS Studios · Bangalore</p>
+        <h2 class="font-display text-[clamp(2.4rem,7vw,5.5rem)] leading-[0.95] tracking-tight">Your home,<br />next.</h2>
+        <p class="mt-6 text-cream/60 max-w-md text-sm md:text-base leading-relaxed">
+          Free site visit, fixed quote, 10-year warranty. Talk to us on WhatsApp.
+        </p>
+        <a id="book-cta-2" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener"
+          class="mt-10 bg-ember text-cream font-bold px-8 py-4 rounded-full hover:bg-cream hover:text-ink transition-colors">Book a free consultation</a>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    #journey-canvas { display: block; }
+    .fallback-photo { display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    body.no-3d #journey-canvas { display: none; }
+    body.no-3d .fallback-photo { display: block; }
+    /* Photo sections are transparent so the canvas shows through; the rest stay ink */
+    #beat-model, #beat-room, #beat-factory, #beat-home { background: transparent; }
+    .suspect.is-picked { border-color: #e2603a !important; box-shadow: 0 0 0 2px #e2603a; }
+    .suspect.is-picked .stamp { display: flex; }
+    .dot.is-active .dot-mark { background: #e2603a; transform: scale(1.9); }
+  </style>
+
+  <script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    import { JourneyExperience } from '../lib/journey/JourneyExperience';
+    gsap.registerPlugin(ScrollTrigger);
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const canvas = document.getElementById('journey-canvas') as HTMLCanvasElement;
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    const hairline = document.getElementById('progress-hairline');
+
+    type Picks = { wood?: string; fabric?: string; finish?: string };
+    const store = 'vjs-materials';
+    let picks: Picks = {};
+    try { picks = JSON.parse(localStorage.getItem(store) || '{}'); } catch { picks = {}; }
+
+    const bookCtas = [
+      document.getElementById('book-cta'),
+      document.getElementById('book-cta-2'),
+    ].filter(Boolean) as HTMLAnchorElement[];
+    const baseMsg = 'Hi VJS Studios! I just watched the film — please book my free consultation.';
+
+    function materialLine() {
+      const parts = [picks.wood, picks.fabric, picks.finish].filter(Boolean);
+      return parts.length ? ` My crew: ${parts.join(' · ')}.` : ' No picks yet — bringing the full library.';
+    }
+
+    function renderPicks() {
+      document.querySelectorAll('[data-suspect]').forEach((el) => {
+        const c = (el as HTMLElement).dataset.cat as keyof Picks;
+        el.classList.toggle('is-picked', picks[c] === (el as HTMLElement).dataset.name);
+      });
+      const locked = (['wood', 'fabric', 'finish'] as const).filter((k) => picks[k]).length;
+      const lc = document.getElementById('lock-count');
+      if (lc) lc.textContent = `${locked} of 3 locked`;
+      document.querySelectorAll('[data-cat-state]').forEach((el) => {
+        const k = (el as HTMLElement).dataset.catState as keyof Picks;
+        el.textContent = picks[k] || 'undecided';
+        (el as HTMLElement).style.color = picks[k] ? '#e2603a' : '';
+      });
+      (document.querySelectorAll('[data-chip]') as NodeListOf<HTMLElement>).forEach((el) => {
+        const k = el.dataset.chip as keyof Picks;
+        el.textContent = `${k[0].toUpperCase() + k.slice(1)} · ${picks[k] || 'TBD'}`;
+        el.style.borderColor = picks[k] ? '#e2603a' : '';
+      });
+      const msg = baseMsg + materialLine();
+      bookCtas.forEach((a) => { a.href = `https://wa.me/919876543210?text=${encodeURIComponent(msg)}`; });
+      try { localStorage.setItem(store, JSON.stringify(picks)); } catch { /* private mode */ }
+    }
+
+    document.querySelectorAll('[data-suspect]').forEach((el) => {
+      el.addEventListener('click', () => {
+        const c = (el as HTMLElement).dataset.cat as keyof Picks;
+        const name = (el as HTMLElement).dataset.name!;
+        picks[c] = picks[c] === name ? undefined : name;
+        renderPicks();
+        if (!reduced) gsap.fromTo(el, { scale: 0.96 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
+      });
+    });
+    renderPicks();
+
+    const setDot = (i: number) =>
+      dots.forEach((d, di) => d.classList.toggle('is-active', di === i));
+    const sceneFor = (p: number) => (p < 0.4 ? 0 : p < 0.78 ? 1 : 2);
+
+    function showFallback() {
+      document.body.classList.add('no-3d');
+    }
+
+    // ---- chrome: dots, hairline, exhibits ----
+    if (!reduced) {
+      ScrollTrigger.create({
+        trigger: '#journey-track', start: 'top top', end: 'bottom bottom',
+        onUpdate: (self) => {
+          const p = self.progress;
+          setDot(sceneFor(p));
+          if (hairline) hairline.style.width = `${p * 100}%`;
+        },
+      });
+      gsap.utils.toArray('.exhibit').forEach((el: any, i: number) => {
+        gsap.fromTo(el, { opacity: 0, x: 40 }, {
+          opacity: 1, x: 0, duration: 0.6, ease: 'power3.out', delay: i * 0.05,
+          scrollTrigger: { trigger: '#beat-factory', start: 'top 55%' },
+        });
+      });
+
+
+      const go = (sel: string) => {
+        const t = document.querySelector(sel);
+        if (t) (t as HTMLElement).scrollIntoView({ behavior: 'smooth' });
+      };
+      dots.forEach((d, i) => d.addEventListener('click', () =>
+        go(['#beat-model', '#beat-factory', '#beat-home'][i])));
+      document.querySelectorAll('[data-scrollto]').forEach((a) =>
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          go((a as HTMLAnchorElement).getAttribute('href')!);
+        }));
+      const beats: Record<string, string> = {
+        model: '#beat-model', room: '#beat-room', lineup: '#beat-lineup',
+        factory: '#beat-factory', home: '#beat-home', finale: '#beat-finale',
+      };
+      const beat = new URLSearchParams(location.search).get('beat');
+      if (beat && beats[beat]) setTimeout(() => go(beats[beat]), 350);
+    }
+
+    // ---- 3D rooms: per-segment camera mapping ----
+    // The spoiler opens on the end (home); Chapter 1's black card covers
+    // the teleport back to the model. Later triggers are created after
+    // earlier ones so boundary overlaps resolve forward.
+    let webgl = true;
+    try {
+      const t = document.createElement('canvas');
+      webgl = !!(t.getContext('webgl') || t.getContext('experimental-webgl'));
+    } catch { webgl = false; }
+
+    if (reduced || !webgl) {
+      showFallback();
+    } else {
+      try {
+        const exp = new JourneyExperience(canvas);
+        exp.init();
+        exp.snapTo(0); // open inside the model, under the intro cover
+        const cam = (trigger: string, from: number, to: number, start: string, end: string) => {
+          ScrollTrigger.create({
+            trigger, start, end, scrub: 1,
+            onUpdate: (self) => exp.setProgress(from + (to - from) * self.progress),
+          });
+        };
+        cam('#beat-model', 0, 0.14, 'top bottom', 'bottom top'); // macro → wide
+        cam('#beat-room', 0.14, 0.32, 'top bottom', 'top top'); // fog flight → room
+        // Factory: flight completes on entry, then a slow drift hold on the table.
+        cam('#beat-factory', 0.32, 0.46, 'top bottom', 'top top');
+        cam('#beat-factory', 0.46, 0.54, 'top top', 'bottom bottom');
+        cam('#beat-lineup', 0.54, 0.54, 'top bottom', 'bottom top'); // hold
+        // Home: honey flight on entry (through the back-wall doorway), push on hold.
+        cam('#beat-home', 0.54, 0.82, 'top bottom', 'top top');
+        cam('#beat-home', 0.82, 1.0, 'top top', 'bottom bottom');
+        ScrollTrigger.create({
+          trigger: '#beat-finale', start: 'top bottom',
+          onEnter: () => exp.setProgress(1.0),
+          onLeaveBack: () => exp.setProgress(0.98),
+        });
+      } catch (e) {
+        console.error('Journey 3D failed, falling back', e);
+        showFallback();
+      }
+    }
+  </script>
+</BaseLayout>

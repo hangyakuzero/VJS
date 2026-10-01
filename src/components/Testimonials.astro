@@ -1,0 +1,35 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { TESTIMONIALS } from '../data/content';
+---
+
+<section id="testimonials" class="py-20 md:py-32 scroll-mt-20 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <SectionHeading eyebrow="Testimonials" title="Loved across Bangalore." desc="5-star rated by homeowners, doctors and founders. Names and areas are placeholders — swap in real Google reviews at launch." />
+      <div class="flex gap-3 shrink-0" data-reveal>
+        <button id="t-prev" aria-label="Previous" class="w-12 h-12 rounded-full border border-ink/15 grid place-items-center hover:bg-ink hover:text-cream transition-colors">←</button>
+        <button id="t-next" aria-label="Next" class="w-12 h-12 rounded-full border border-ink/15 grid place-items-center hover:bg-ink hover:text-cream transition-colors">→</button>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto pl-5 md:pl-8 mt-10">
+    <div id="t-track" class="flex gap-5 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-2 pr-5" data-reveal>
+      {TESTIMONIALS.map((t) => (
+        <article class="snap-start shrink-0 w-[86vw] sm:w-[420px] bg-white border border-ink/8 rounded-3xl p-8 shadow-[0_10px_40px_rgba(28,25,23,0.06)] flex flex-col">
+          <p class="text-brass tracking-widest mb-4">{'★'.repeat(t.rating)}</p>
+          <p class="text-[17px] leading-relaxed flex-1">“{t.text}”</p>
+          <div class="mt-6 pt-5 border-t border-ink/8 flex items-center gap-3">
+            <span class="w-11 h-11 rounded-full bg-sand grid place-items-center font-display font-semibold">{t.name.charAt(0)}</span>
+            <div><p class="font-bold text-sm">{t.name}</p><p class="text-xs text-smoke">{t.area}</p></div>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div id="t-dots" class="flex gap-2 mt-6">
+      {TESTIMONIALS.map((_, i) => (
+        <button aria-label={`Go to testimonial ${i + 1}`} class="h-2 rounded-full transition-all" style={`width: ${i === 0 ? '28px' : '8px'}; background: ${i === 0 ? '#8C5E3C' : '#E8DFD3'}`}></button>
+      ))}
+    </div>
+  </div>
+</section>

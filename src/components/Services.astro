@@ -1,0 +1,36 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { SERVICES } from '../data/content';
+---
+
+<section id="services" class="py-20 md:py-32 bg-sand/60 scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <SectionHeading eyebrow="Chapter 02 — What we do" title="Four crafts. One factory. Zero outsourcing." desc="Scroll through each service — every shutter, carcass and counter is sized in 3D, then built on our own machines." />
+      <a href="#book" class="shrink-0 bg-ink text-cream font-bold px-6 py-3 rounded-full text-sm" data-reveal>Get fixed quote →</a>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-6">
+      {SERVICES.map((s, i) => (
+        <article data-card-stack class={`rounded-[28px] overflow-hidden grid md:grid-cols-2 border border-ink/8 ${i % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''} bg-white shadow-[0_20px_60px_rgba(28,25,23,0.08)]`}>
+          <div class="relative min-h-[280px] md:min-h-[380px] overflow-hidden">
+            <img data-parallax src={s.img} alt={s.title} loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
+            <span class="absolute top-5 left-5 bg-ink/80 backdrop-blur text-cream text-xs font-bold px-4 py-2 rounded-full">{s.no} · {s.price}</span>
+          </div>
+          <div class="p-8 md:p-12 flex flex-col justify-center">
+            <h3 class="font-display text-3xl md:text-4xl mb-3">{s.title}</h3>
+            <p class="text-smoke leading-relaxed mb-5">{s.desc}</p>
+            <ul class="space-y-2.5 mb-7">
+              {s.points.map((p) => (
+                <li class="flex items-start gap-2.5 text-sm font-semibold"><span class="mt-0.5 w-5 h-5 rounded-full bg-wood/15 text-wood grid place-items-center text-xs">✓</span>{p}</li>
+              ))}
+            </ul>
+            <div>
+              <a href="#book" class="inline-block border border-ink/15 font-bold text-sm px-6 py-3 rounded-full hover:bg-ink hover:text-cream transition-colors">Book free design consult</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

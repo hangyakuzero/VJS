@@ -1,0 +1,46 @@
+---
+import { SITE } from '../data/content';
+---
+
+<footer class="bg-ink text-cream mt-0">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 py-14 grid md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-9 h-9 rounded-xl bg-cream text-ink grid place-items-center font-display text-lg font-semibold">V</span>
+        <span class="font-display text-xl">VJS Studios</span>
+      </div>
+      <p class="text-cream/60 text-sm leading-relaxed">Factory-backed interior studio in Bangalore. Homes, kitchens, wardrobes & commercial spaces — designed, built and installed by one team.</p>
+    </div>
+    <div>
+      <h4 class="text-xs uppercase tracking-widest2 text-cream/50 mb-4">Explore</h4>
+      <ul class="space-y-2.5 text-sm font-semibold">
+        <li><a href="#story" class="hover:text-brass">Our Story</a></li>
+        <li><a href="#services" class="hover:text-brass">Services</a></li>
+        <li><a href="#about" class="hover:text-brass">About Us</a></li>
+        <li><a href="#work" class="hover:text-brass">Work</a></li>
+        <li><a href="#testimonials" class="hover:text-brass">Testimonials</a></li>
+        <li><a href="#faqs" class="hover:text-brass">FAQs</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-xs uppercase tracking-widest2 text-cream/50 mb-4">Services</h4>
+      <ul class="space-y-2.5 text-sm text-cream/80">
+        <li>Interior Design</li>
+        <li>Modular Kitchen</li>
+        <li>Wardrobes & Storages</li>
+        <li>Commercial Spaces</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-xs uppercase tracking-widest2 text-cream/50 mb-4">Visit / Call</h4>
+      <p class="text-sm text-cream/80 leading-relaxed">{SITE.address}<br />{SITE.hours}<br />{SITE.phoneDisplay}<br />{SITE.email}</p>
+      <a href="#book" class="inline-block mt-4 bg-cream text-ink text-sm font-bold px-5 py-2.5 rounded-full">Book Consultation</a>
+    </div>
+  </div>
+  <div class="border-t border-cream/10">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 py-5 flex flex-col md:flex-row gap-2 items-center justify-between text-xs text-cream/50">
+      <span>© 2026 VJS Studios · Bangalore, India. All rights reserved.</span>
+      <span>Factory-direct · 10-year warranty · Made in Bangalore</span>
+    </div>
+  </div>
+</footer>

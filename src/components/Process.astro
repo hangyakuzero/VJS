@@ -1,0 +1,27 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { PROCESS } from '../data/content';
+---
+
+<section class="py-20 md:py-28 bg-ink text-cream">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <SectionHeading dark eyebrow="Chapter 03 — How it works" title="Design to handover in 45–60 days." desc="A fixed, factory-driven pipeline. You always know what happens next — and what it costs." />
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {PROCESS.map((p, i) => (
+        <div class="group rounded-3xl border border-cream/15 bg-cream/[0.04] p-7 flex flex-col transition-all duration-300 hover:border-ember hover:bg-cream/[0.07] hover:-translate-y-1.5 hover:shadow-[0_0_0_1px_#E86A2C,0_20px_60px_rgba(232,106,44,0.28)] active:border-ember active:bg-cream/[0.07] active:shadow-[0_0_0_1px_#E86A2C,0_20px_60px_rgba(232,106,44,0.28)] focus-within:border-ember focus-within:shadow-[0_0_0_1px_#E86A2C,0_20px_60px_rgba(232,106,44,0.28)]" data-reveal data-delay={String(i * 0.08)}>
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-display text-4xl text-stroke transition-colors duration-300 group-hover:[-webkit-text-stroke-color:#E86A2C]" style="-webkit-text-stroke-color: rgba(250,247,242,.4)">{p.no}</span>
+            <span class="text-[11px] font-bold uppercase tracking-widest2 bg-brass/20 text-brass px-3 py-1.5 rounded-full transition-colors duration-300 group-hover:bg-ember/20 group-hover:text-ember group-hover:border group-hover:border-ember/50">{p.time}</span>
+          </div>
+          <h3 class="font-display text-xl mb-2 transition-colors duration-300 group-hover:text-ember">{p.title}</h3>
+          <p class="text-cream/60 text-sm leading-relaxed flex-1">{p.desc}</p>
+          {i < 3 && <p class="mt-6 text-brass text-xl transition-all duration-300 group-hover:text-ember group-hover:translate-x-1.5">→</p>}
+        </div>
+      ))}
+    </div>
+    <div class="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-between bg-cream text-ink rounded-3xl p-6 md:p-8" data-reveal>
+      <p class="font-display text-xl md:text-2xl">Not sure where to start? Get a free site measurement this week.</p>
+      <a href="#book" class="shrink-0 bg-ink text-cream font-bold px-7 py-3.5 rounded-full hover:bg-wood transition-colors">Book Consultation</a>
+    </div>
+  </div>
+</section>

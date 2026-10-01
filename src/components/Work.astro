@@ -1,0 +1,23 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { WORK } from '../data/content';
+---
+
+<section id="work" class="py-20 md:py-32 bg-sand/60 scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <SectionHeading eyebrow="Selected work — Bangalore" title="Real homes. Real dust. Real handovers." desc="A few recent factory-to-home transformations. Every photo is a VJS build — ask us for the address and go see the finish." align="center" />
+    <div class="mt-12 grid sm:grid-cols-2 gap-5">
+      {WORK.map((w, i) => (
+        <figure class={`group relative rounded-3xl overflow-hidden ${i === 0 ? 'sm:col-span-2 aspect-[16/8]' : 'aspect-[4/3]'}`} data-reveal data-delay={String((i % 2) * 0.08)}>
+          <img src={w.img} alt={w.title} loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent"></div>
+          <figcaption class="absolute bottom-0 p-6 md:p-8 text-cream">
+            <p class="text-[11px] font-bold uppercase tracking-widest2 text-brass mb-1.5">{w.tag}</p>
+            <p class="font-display text-xl md:text-2xl">{w.title}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+    <p class="text-center text-sm text-smoke mt-8" data-reveal>Placeholder portfolio — replace with VJS project photography at launch.</p>
+  </div>
+</section>

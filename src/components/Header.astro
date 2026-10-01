@@ -1,0 +1,45 @@
+---
+import { NAV, SITE } from '../data/content';
+---
+
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-cream/70 backdrop-blur-md border-b border-ink/5">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 h-[72px] flex items-center justify-between gap-4">
+    <a href="#top" class="flex items-center gap-3 shrink-0">
+      <span class="w-9 h-9 rounded-xl bg-ink text-cream grid place-items-center font-display text-lg font-semibold">V</span>
+      <span class="leading-none">
+        <span class="block font-display font-semibold text-lg tracking-tight">VJS Studios</span>
+        <span class="block text-[11px] uppercase tracking-widest2 text-smoke hidden min-[400px]:block">Bangalore · Factory-direct</span>
+      </span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-ink/70">
+      {NAV.map((n) => (
+        <a data-nav={n.href.slice(1)} href={n.href} class="hover:text-wood transition-colors">{n.label}</a>
+      ))}
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href={`tel:${SITE.phoneLink}`} class="hidden md:block text-sm font-semibold text-ink/70 hover:text-wood">{SITE.phoneDisplay}</a>
+      <a href="#book" class="bg-ink text-cream text-sm font-bold px-4 sm:px-5 py-2.5 rounded-full hover:bg-wood active:bg-wood transition-colors whitespace-nowrap"><span class="sm:hidden">Book</span><span class="hidden sm:inline">Book Consultation</span></a>
+      <button id="menu-btn" aria-label="Open menu" class="lg:hidden w-10 h-10 grid place-items-center rounded-full border border-ink/10">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mobile-menu" class="hidden fixed inset-0 z-[80] bg-ink text-cream overflow-y-auto">
+  <div class="p-5 flex items-center justify-between">
+    <span class="font-display text-xl">VJS Studios</span>
+    <button id="menu-close" aria-label="Close menu" class="w-10 h-10 grid place-items-center rounded-full border border-cream/20 text-xl">×</button>
+  </div>
+  <nav class="px-8 pt-6 flex flex-col gap-5 text-2xl font-display">
+    {NAV.map((n) => (
+      <a href={n.href} class="border-b border-cream/10 pb-4">{n.label}</a>
+    ))}
+    <a href="#book" class="mt-4 bg-cream text-ink text-center font-body font-bold text-base px-6 py-4 rounded-full">Book Consultation</a>
+    <p class="font-body text-sm text-cream/60">{SITE.phoneDisplay} · {SITE.city}</p>
+  </nav>
+</div>
+
+<style>
+  #site-header.is-scrolled { background: rgba(250,247,242,0.92); box-shadow: 0 8px 30px rgba(28,25,23,0.08); }
+</style>
