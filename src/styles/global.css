@@ -13,14 +13,14 @@ html.lenis, html.lenis body {
 }
 
 body {
-  @apply bg-cream text-ink font-body antialiased;
+  @apply bg-chalk text-ink font-body antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
 }
 
 ::selection {
-  background: #8c5e3c;
-  color: #faf7f2;
+  background: #211A26;
+  color: #FAF8F4;
 }
 
 /* film grain */
@@ -48,6 +48,36 @@ body {
   -webkit-text-stroke: 1px rgba(28, 25, 23, 0.25);
   color: transparent;
 }
+
+/* gallery label */
+.g-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.hairline { border-color: rgba(22, 19, 15, 0.1); }
+.bronze-line {
+  background: linear-gradient(90deg, rgba(176,141,87,0), rgba(176,141,87,.9), rgba(176,141,87,0));
+  height: 1px;
+}
+/* image reveal */
+.reveal-clip { clip-path: inset(6% 4% 6% 4% round 28px); }
+@media (min-width: 768px) {
+  .display-tight { letter-spacing: -0.03em; }
+}
+.font-display { font-optical-sizing: auto; }
+
+/* atelier swatches */
+.swatch-active {
+  outline: 2px solid #B08D57 !important;
+  outline-offset: 3px;
+}
+/* hero crossfade */
+.hero-frame { transition: opacity .8s ease, transform 1.2s cubic-bezier(.22,1,.36,1); }
+/* card lift */
+.lift { transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease, border-color .3s ease; }
+.lift:hover { transform: translateY(-6px); }
 
 /* marquee */
 @keyframes marquee {

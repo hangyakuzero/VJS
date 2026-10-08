@@ -4,7 +4,7 @@ const { eyebrow, title, desc, align = 'left', dark = false } = Astro.props;
 ---
 
 <div class={align === 'center' ? 'text-center max-w-2xl mx-auto' : 'max-w-2xl'} data-reveal>
-  <p class={`text-[11px] font-bold uppercase tracking-widest2 mb-3 ${dark ? 'text-brass' : 'text-wood'}`}>{eyebrow}</p>
-  <h2 class={`font-display text-3xl md:text-5xl leading-[1.05] tracking-tight ${dark ? 'text-cream' : 'text-ink'}`}>{title}</h2>
-  {desc && <p class={`mt-4 text-base md:text-lg leading-relaxed ${dark ? 'text-cream/70' : 'text-smoke'}`}>{desc}</p>}
+  <p class={`g-label mb-4 flex items-center gap-3 ${align === 'center' ? 'justify-center' : ''} ${dark ? 'text-bronze' : 'text-wood'}`}><span class={`inline-block w-8 h-px ${dark ? 'bg-bronze/60' : 'bg-wood/50'}`}></span>{eyebrow}<span class={`inline-block w-8 h-px ${dark ? 'bg-bronze/60' : 'bg-wood/50'} ${align === 'center' ? '' : 'hidden'}`}></span></p>
+  <h2 class={`font-display font-medium text-[32px] md:text-[52px] leading-[1.02] tracking-tight display-tight ${dark ? 'text-chalk' : 'text-graphite'}`}>{title}</h2>
+  {desc && <p class={`mt-5 text-[15px] md:text-[17px] leading-relaxed ${dark ? 'text-chalk/65' : 'text-smoke'}`}>{desc}</p>}
 </div>

@@ -11,11 +11,11 @@ export const SITE = {
 };
 
 export const NAV = [
-  { label: 'Our Story', href: '#story' },
-  { label: 'Services', href: '#services' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Work', href: '#work' },
-  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Studies', href: '#studies' },
+  { label: 'Atelier', href: '#atelier' },
+  { label: 'Crafts', href: '#services' },
+  { label: 'Studio', href: '#about' },
+  { label: 'Reviews', href: '#testimonials' },
   { label: 'FAQs', href: '#faqs' },
 ];
 

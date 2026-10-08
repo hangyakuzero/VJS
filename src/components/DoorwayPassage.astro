@@ -1,0 +1,102 @@
+---
+interface Props {
+  eyebrow?: string;
+  darkTitle?: string;
+  brightTitle?: string;
+  darkCaption?: string;
+  brightCaption?: string;
+  darkImg?: string;
+  brightImg?: string;
+}
+const {
+  eyebrow = 'Passage — Detail → Room',
+  darkTitle = 'Touch the material.',
+  brightTitle = 'Then live inside it.',
+  darkCaption = 'Close-up — oiled walnut, brushed brass',
+  brightCaption = 'The same palette, at room scale',
+  darkImg = 'https://images.unsplash.com/photo-1523487150502-f27148d0af52?q=80&w=2000&auto=format&fit=crop',
+  brightImg = 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000&auto=format&fit=crop',
+} = Astro.props;
+---
+
+<section data-passage class="relative bg-graphite h-[220vh] md:h-[260vh]">
+  <div class="sticky top-0 h-[100svh] overflow-hidden text-chalk">
+    <!-- dark layer: material close-up -->
+    <img
+      data-passage-dark
+      src={darkImg}
+      alt="Close-up of interior material detail"
+      loading="lazy"
+      class="absolute inset-0 w-full h-full object-cover opacity-50"
+    />
+    <div class="absolute inset-0 bg-graphite/60"></div>
+    <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6" data-passage-dark-caption>
+      <p class="text-[11px] font-bold uppercase tracking-[0.22em] text-bronze mb-4">{eyebrow}</p>
+      <p class="font-display font-medium text-4xl sm:text-5xl md:text-7xl leading-[0.95] tracking-tight">{darkTitle}</p>
+      <p class="text-chalk/55 text-[12px] font-bold uppercase tracking-[0.2em] mt-6">{darkCaption}</p>
+      <p class="text-chalk/45 text-xs mt-3 font-semibold">Keep scrolling — step through ↓</p>
+    </div>
+
+    <!-- bright layer: the room, revealed through a growing arch doorway -->
+    <div class="absolute inset-0 z-20" data-passage-door style="clip-path: inset(34% 36% 34% 36% round 999px 999px 24px 24px);">
+      <img
+        src={brightImg}
+        alt="Finished interior at full room scale"
+        loading="lazy"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-graphite/75 via-transparent to-graphite/20"></div>
+      <div class="absolute bottom-12 inset-x-0 text-center px-6" data-passage-bright-caption style="opacity: 0;">
+        <p class="text-[11px] font-bold uppercase tracking-[0.22em] text-bronze mb-2">{brightCaption}</p>
+        <p class="font-display font-medium text-3xl md:text-6xl tracking-tight">{brightTitle}</p>
+      </div>
+    </div>
+
+    <!-- arch frame hint -->
+    <div class="absolute inset-0 z-30 pointer-events-none grid place-items-center" data-passage-frame>
+      <div class="border border-bronze/60 rounded-t-[999px] rounded-b-[24px] px-8 py-12 md:px-16 md:py-28 bg-graphite/10 backdrop-blur-[1px]">
+        <p class="text-[11px] font-bold uppercase tracking-[0.22em] text-chalk/75">scroll to enter</p>
+      </div>
+    </div>
+
+    <!-- progress hairline -->
+    <div class="absolute top-0 left-0 h-[2px] bg-bronze z-40 w-0" data-passage-progress></div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced) {
+    document.querySelectorAll('[data-passage]').forEach((section: any) => {
+      const door = section.querySelector('[data-passage-door]');
+      const darkCap = section.querySelector('[data-passage-dark-caption]');
+      const brightCap = section.querySelector('[data-passage-bright-caption]');
+      const frame = section.querySelector('[data-passage-frame]');
+      const dark = section.querySelector('[data-passage-dark]');
+      const bar = section.querySelector('[data-passage-progress]');
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section, start: 'top top', end: 'bottom bottom', scrub: 1,
+          onUpdate: (self) => { if (bar) bar.style.width = `${self.progress * 100}%`; },
+        },
+      });
+      if (dark) tl.fromTo(dark, { scale: 1 }, { scale: 1.16, ease: 'none', duration: 1 }, 0);
+      if (darkCap) tl.to(darkCap, { opacity: 0, y: -70, ease: 'none', duration: 0.3 }, 0);
+      if (frame) tl.to(frame, { opacity: 0, scale: 1.5, ease: 'none', duration: 0.35 }, 0.05);
+      if (door) {
+        const narrow = window.matchMedia('(max-width: 767px)').matches;
+        tl.fromTo(door,
+          { clipPath: narrow ? 'inset(36% 12% 36% 12% round 999px 999px 24px 24px)' : 'inset(34% 36% 34% 36% round 999px 999px 24px 24px)' },
+          { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'none', duration: 0.7 }, 0.1);
+      }
+      if (brightCap) {
+        tl.fromTo(brightCap, { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: 'none', duration: 0.25 }, 0.62);
+        tl.to(brightCap, { opacity: 0, y: -40, ease: 'none', duration: 0.15 }, 0.9);
+      }
+    });
+  }
+</script>

@@ -1,0 +1,211 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+const PALETTES = [
+  {
+    id: 'limestone',
+    name: 'Limestone Calm',
+    mood: 'Oak · limewash · boucle',
+    desc: 'Pale oak floors, limewashed walls and soft boucle. Daylight does the decorating — calm, breathable, quietly luxurious. Best for living rooms and bedrooms that face east.',
+    img: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600&auto=format&fit=crop',
+    detail: 'https://images.unsplash.com/photo-1523487150502-f27148d0af52?q=80&w=800&auto=format&fit=crop',
+    swatches: ['#E9E1D3', '#CBB79E', '#8C7B64', '#3E3A34'],
+    light: 'Soft morning light, sheer linen',
+  },
+  {
+    id: 'walnut',
+    name: 'Walnut Ritual',
+    mood: 'Walnut · linen · brass',
+    desc: 'Dark walnut joinery against warm linen, brushed brass that catches the evening lamp. Intimate and grounded — made for dining rooms, studies and pooja corners.',
+    img: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1600&auto=format&fit=crop',
+    detail: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop',
+    swatches: ['#4A3226', '#A67C52', '#E8DFD3', '#1C1917'],
+    light: 'Warm 2700K pools, low pendants',
+  },
+  {
+    id: 'graphite',
+    name: 'Graphite Focus',
+    mood: 'Ash · fluted glass · bronze',
+    desc: 'Smoked ash, fluted glass partitions and dark bronze hardware. Precise and photogenic — our signature for kitchens, home offices and boutique commercial spaces.',
+    img: 'https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?q=80&w=1600&auto=format&fit=crop',
+    detail: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop',
+    swatches: ['#23211E', '#6B6259', '#B08D57', '#F2ECE1'],
+    light: 'Task + accent, no overhead glare',
+  },
+];
+---
+
+<section id="atelier" class="py-20 md:py-32 bg-chalk scroll-mt-20">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <SectionHeading eyebrow="Signature — Compose your space" title="Three palettes. One that feels like you." desc="This is how a VJS consultation begins — not with a catalogue, but with atmosphere, light and touch. Pick a direction to carry into your enquiry." />
+      <p class="text-[12px] font-bold uppercase tracking-[0.18em] text-stone shrink-0" data-reveal>Concept visuals · final renders made to order</p>
+    </div>
+
+    <div class="mt-10 grid lg:grid-cols-[1.5fr_1fr] gap-5">
+      <!-- material becomes the room: scroll pulls back from macro to full interior -->
+      <!-- NOTE: outer track must NOT clip (overflow-hidden breaks sticky) — rounding lives on the sticky stage -->
+      <div class="lg:col-span-2" data-reveal>
+        <div data-atelier-reveal class="relative h-[160vh] md:h-[190vh]">
+          <div class="sticky top-0 h-[92svh] md:h-screen overflow-hidden rounded-[28px] bg-graphite">
+            <img id="atelier-macro" src={PALETTES[0].detail} alt="Macro view of selected material" loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-graphite/35"></div>
+            <div class="absolute inset-0 z-10" id="atelier-roommask" style="clip-path: inset(30% 32% 30% 32% round 28px);">
+              <img id="atelier-roomscroll" src={PALETTES[0].img} alt="Full room in the selected palette" loading="lazy" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-graphite/70 via-transparent to-transparent"></div>
+            </div>
+            <div class="absolute top-5 left-5 z-20 flex gap-2">
+              <span class="bg-chalk/90 text-graphite text-[11px] font-bold uppercase tracking-[0.14em] px-4 py-2 rounded-full">Macro → Room</span>
+              <span id="atelier-reveal-name" class="bg-graphite/60 backdrop-blur text-chalk text-[11px] font-bold uppercase tracking-[0.14em] px-4 py-2 rounded-full border border-chalk/15">{PALETTES[0].name}</span>
+            </div>
+            <div class="absolute bottom-6 inset-x-0 z-20 text-center px-6 text-chalk">
+              <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-chalk/60" data-atelier-hint>Scroll — pull back from the detail ↓</p>
+              <p id="atelier-reveal-cap" class="font-display text-2xl md:text-4xl mt-2">The grain you touch is the wall you live with.</p>
+            </div>
+            <div class="absolute top-0 left-0 h-[2px] bg-bronze z-30 w-0" id="atelier-progress"></div>
+          </div>
+        </div>
+      </div>
+      <!-- main canvas -->
+      <div class="relative rounded-[28px] overflow-hidden bg-graphite min-h-[420px] md:min-h-[560px] lift border border-ink/10" data-reveal>
+        <img id="atelier-img" src={PALETTES[0].img} alt="Palette room concept" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-graphite/10 to-transparent"></div>
+        <div class="absolute top-5 left-5 flex gap-2">
+          <span class="bg-chalk/90 backdrop-blur text-graphite text-[11px] font-bold uppercase tracking-[0.14em] px-4 py-2 rounded-full">Atelier N°<span id="atelier-num">01</span></span>
+          <span id="atelier-mood" class="bg-graphite/60 backdrop-blur text-chalk text-[11px] font-bold uppercase tracking-[0.14em] px-4 py-2 rounded-full border border-chalk/15">{PALETTES[0].mood}</span>
+        </div>
+        <div class="absolute bottom-0 inset-x-0 p-6 md:p-10 text-chalk">
+          <h3 id="atelier-name" class="font-display text-3xl md:text-5xl leading-none">{PALETTES[0].name}</h3>
+          <p id="atelier-desc" class="mt-3 max-w-xl text-chalk/70 leading-relaxed text-[14px] md:text-[16px]">{PALETTES[0].desc}</p>
+          <p class="mt-4 text-[11px] font-bold uppercase tracking-[0.18em] text-bronze">Light — <span id="atelier-light" class="text-chalk/80">{PALETTES[0].light}</span></p>
+        </div>
+      </div>
+
+      <!-- controls -->
+      <div class="flex flex-col gap-5">
+        <div class="rounded-[28px] bg-white border border-ink/10 p-6 md:p-8 shadow-[0_20px_60px_rgba(22,19,15,0.06)]" data-reveal>
+          <p class="g-label text-stone mb-5">01 — Choose atmosphere</p>
+          <div class="flex flex-col gap-3" role="radiogroup" aria-label="Material palettes">
+            {PALETTES.map((p, i) => (
+              <button data-palette={p.id} role="radio" aria-checked={i === 0 ? 'true' : 'false'} class={`text-left rounded-2xl border p-4 flex items-center gap-4 transition-all hover:border-bronze ${i === 0 ? 'border-bronze bg-paper/60 swatch-active' : 'border-ink/10 bg-chalk'}`}>
+                <span class="flex -space-x-2">
+                  {p.swatches.map((s) => (
+                    <span class="w-8 h-8 rounded-full border-2 border-white shadow" style={`background:${s}`}></span>
+                  ))}
+                </span>
+                <span>
+                  <span class="block font-display text-lg leading-none">{p.name}</span>
+                  <span class="block text-[11px] font-bold uppercase tracking-[0.14em] text-stone mt-1">{p.mood}</span>
+                </span>
+                <span class="ml-auto text-bronze text-lg" data-check={i === 0 ? '1' : '0'}>{i === 0 ? '●' : '○'}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="rounded-[28px] overflow-hidden grid grid-cols-2 border border-ink/10 bg-white" data-reveal>
+          <div class="relative min-h-[160px]">
+            <img id="atelier-detail" src={PALETTES[0].detail} alt="Material detail" class="absolute inset-0 w-full h-full object-cover" />
+          </div>
+          <div class="p-6 flex flex-col justify-center">
+            <p class="g-label text-stone mb-2">Swatches</p>
+            <div id="atelier-swatches" class="flex gap-2">
+              {PALETTES[0].swatches.map((s) => (
+                <span class="w-9 h-9 rounded-full border border-ink/10 shadow-inner" style={`background:${s}`}></span>
+              ))}
+            </div>
+            <a id="atelier-cta" href="#book" class="mt-5 inline-flex items-center justify-center bg-graphite text-chalk text-[12px] font-bold uppercase tracking-[0.12em] px-5 py-3.5 rounded-full hover:bg-aubergine transition-colors">Discuss this direction →</a>
+          </div>
+        </div>
+        <p class="text-[13px] text-stone leading-relaxed px-1">Real project photography replaces concept visuals at launch. Coordinated room renders of the same space unlock true before/after switching.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ palettes: PALETTES }}>
+  (function(){
+    const data = palettes;
+    const img = document.getElementById('atelier-img');
+    const detail = document.getElementById('atelier-detail');
+    const macro = document.getElementById('atelier-macro');
+    const roomscroll = document.getElementById('atelier-roomscroll');
+    const revealName = document.getElementById('atelier-reveal-name');
+    const revealCap = document.getElementById('atelier-reveal-cap');
+    const nameEl = document.getElementById('atelier-name');
+    const descEl = document.getElementById('atelier-desc');
+    const moodEl = document.getElementById('atelier-mood');
+    const lightEl = document.getElementById('atelier-light');
+    const numEl = document.getElementById('atelier-num');
+    const swWrap = document.getElementById('atelier-swatches');
+    const cta = document.getElementById('atelier-cta');
+    const btns = Array.from(document.querySelectorAll('[data-palette]'));
+    if(!img || btns.length === 0) return;
+    function select(id){
+      const idx = data.findIndex((d) => d.id === id);
+      const p = data[idx];
+      if(!p) return;
+      img.style.opacity = '0';
+      setTimeout(() => { img.src = p.img; img.onload = () => { img.style.opacity = '1'; }; setTimeout(() => { img.style.opacity = '1'; }, 350); }, 180);
+      if(detail) detail.src = p.detail;
+      if(macro) macro.src = p.detail;
+      if(roomscroll) roomscroll.src = p.img;
+      if(revealName) revealName.textContent = p.name;
+      if(revealCap) revealCap.textContent = p.id === 'limestone' ? 'The grain you touch is the wall you live with.' : p.id === 'walnut' ? 'Evening brass, at full-room scale.' : 'Smoked ash, from handle to whole kitchen.';
+      if(nameEl) nameEl.textContent = p.name;
+      if(descEl) descEl.textContent = p.desc;
+      if(moodEl) moodEl.textContent = p.mood;
+      if(lightEl) lightEl.textContent = p.light;
+      if(numEl) numEl.textContent = '0' + (idx + 1);
+      if(swWrap) swWrap.innerHTML = p.swatches.map((s) => `<span class="w-9 h-9 rounded-full border border-ink/10 shadow-inner" style="background:${s}"></span>`).join('');
+      btns.forEach((b) => {
+        const active = b.getAttribute('data-palette') === id;
+        b.setAttribute('aria-checked', String(active));
+        b.className = 'text-left rounded-2xl border p-4 flex items-center gap-4 transition-all hover:border-bronze ' + (active ? 'border-bronze bg-paper/60 swatch-active' : 'border-ink/10 bg-chalk');
+        const dot = b.querySelector('[data-check]');
+        if(dot) dot.textContent = active ? '●' : '○';
+      });
+      try { localStorage.setItem('vjs-palette', p.name); } catch(e) {}
+      if(cta) cta.setAttribute('href', '#book');
+    }
+    btns.forEach((b) => b.addEventListener('click', () => select(b.getAttribute('data-palette') || '')));
+  })();
+</script>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reveal = document.querySelector('[data-atelier-reveal]');
+  if (reveal && reduced) {
+    // No scrub: show the full room immediately, no empty track.
+    const mask = reveal.querySelector('#atelier-roommask');
+    const hint = reveal.querySelector('[data-atelier-hint]');
+    if (mask) (mask as HTMLElement).style.clipPath = 'inset(0% 0% 0% 0% round 0px)';
+    if (hint) (hint as HTMLElement).style.display = 'none';
+  }
+  if (!reduced) {
+    const el = document.querySelector('[data-atelier-reveal]');
+    if (el) {
+      const mask = el.querySelector('#atelier-roommask');
+      const macro = el.querySelector('#atelier-macro');
+      const hint = el.querySelector('[data-atelier-hint]');
+      const bar = el.querySelector('#atelier-progress');
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el, start: 'top top', end: 'bottom bottom', scrub: 1,
+          onUpdate: (self) => { if (bar) (bar as HTMLElement).style.width = `${self.progress * 100}%`; },
+        },
+      });
+      if (macro) tl.fromTo(macro, { scale: 1.12 }, { scale: 1, ease: 'none', duration: 1 }, 0);
+      if (mask) {
+        const narrow = window.matchMedia('(max-width: 767px)').matches;
+        tl.fromTo(mask,
+          { clipPath: narrow ? 'inset(34% 10% 34% 10% round 24px)' : 'inset(30% 32% 30% 32% round 28px)' },
+          { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'none', duration: 1 }, 0);
+      }
+      if (hint) tl.to(hint, { opacity: 0, y: -20, ease: 'none', duration: 0.25 }, 0.15);
+    }
+  }
+</script>

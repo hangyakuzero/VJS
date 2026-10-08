@@ -1,0 +1,156 @@
+---
+---
+
+<section id="top" class="relative bg-graphite text-chalk" data-threshold>
+  <div class="h-[230vh] md:h-[260vh] relative">
+    <div class="sticky top-0 h-[100svh] overflow-hidden" data-threshold-stage>
+      <!-- the room beyond -->
+      <div class="absolute inset-0" data-threshold-roomwrap>
+        <img
+          id="threshold-room"
+          src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2400&auto=format&fit=crop"
+          alt="Considered living room beyond an architectural doorway"
+          class="absolute inset-0 w-full h-full object-cover"
+          fetchpriority="high"
+        />
+        <img
+          id="threshold-room-work"
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2400&auto=format&fit=crop"
+          alt="Daylight workspace beyond the doorway"
+          class="absolute inset-0 w-full h-full object-cover opacity-0"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-graphite/20 to-graphite/30"></div>
+      </div>
+
+      <!-- foreground architecture: two dark wall leaves + lintel forming the doorway -->
+      <div class="absolute inset-0 pointer-events-none" data-threshold-walls aria-hidden="true">
+        <div class="absolute inset-y-0 left-0 w-[22vw] md:w-[24vw] bg-graphite" data-wall-left>
+          <div class="absolute inset-0 bg-[linear-gradient(105deg,rgba(0,0,0,0.35),transparent_60%)]"></div>
+          <div class="absolute right-6 top-1/2 -translate-y-1/2 hidden md:block text-chalk/30 text-[11px] font-bold uppercase tracking-[0.3em]" style="writing-mode: vertical-rl;">Vestibule</div>
+        </div>
+        <div class="absolute inset-y-0 right-0 w-[22vw] md:w-[24vw] bg-graphite" data-wall-right>
+          <div class="absolute inset-0 bg-[linear-gradient(255deg,rgba(0,0,0,0.35),transparent_60%)]"></div>
+        </div>
+        <div class="absolute top-0 inset-x-0 h-[16vh] md:h-[13vh] bg-graphite" data-wall-top>
+          <div class="absolute inset-x-0 bottom-0 h-px bg-chalk/10"></div>
+        </div>
+        <!-- bronze door frame -->
+        <div class="absolute inset-0 grid place-items-center">
+          <div class="rounded-t-[999px] rounded-b-[24px] border border-bronze/70" data-door-frame style="width: 30vw; height: 72vh; min-width: 240px; box-shadow: 0 0 0 1px rgba(176,141,87,.25), 0 30px 80px rgba(0,0,0,.35);"></div>
+        </div>
+      </div>
+
+      <!-- top gallery bar -->
+      <div class="absolute top-[72px] inset-x-0 z-20">
+        <div class="max-w-[1400px] mx-auto px-5 md:px-10 pt-6 flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.22em] text-chalk/80">
+          <span class="flex items-center gap-3"><span class="w-10 h-px bg-bronze inline-block"></span> N°01 — Threshold</span>
+          <span class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Booking Nov — Jan</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- copy -->
+      <div class="absolute inset-x-0 bottom-0 z-20">
+        <div class="max-w-[1400px] mx-auto px-5 md:px-10 pb-10 md:pb-14">
+          <div class="flex items-center gap-3 mb-5" data-threshold-ui>
+            <div class="inline-flex p-1 rounded-full bg-graphite/45 backdrop-blur-md border border-chalk/25 pointer-events-auto" role="tablist" aria-label="Explore spaces">
+              <button id="tab-living" role="tab" aria-selected="true" class="px-5 py-2.5 rounded-full text-[12px] font-bold uppercase tracking-[0.14em] bg-chalk text-graphite transition-all">Living</button>
+              <button id="tab-working" role="tab" aria-selected="false" class="px-5 py-2.5 rounded-full text-[12px] font-bold uppercase tracking-[0.14em] text-chalk/70 hover:text-chalk transition-all">Working</button>
+            </div>
+            <span class="hidden md:block text-[11px] font-bold uppercase tracking-[0.22em] text-chalk/50" data-threshold-hint>Scroll — step through ↓</span>
+          </div>
+
+          <h1 class="font-display font-medium text-[12vw] sm:text-7xl lg:text-[100px] leading-[0.94] tracking-tight max-w-6xl" data-threshold-title>
+            <span class="block overflow-hidden"><span class="block text-chalk/85" data-th-line id="threshold-line1">Outside, Bangalore.</span></span>
+            <span class="block overflow-hidden"><span class="block italic font-normal text-chalk" data-th-line id="threshold-line2">Inside, your world.</span></span>
+          </h1>
+
+          <div class="mt-6 flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-12">
+            <p id="threshold-copy" class="max-w-xl text-chalk/70 text-[15px] md:text-lg leading-relaxed" data-th-line>
+              Interiors for homes and workspaces — thoughtfully planned, carefully built. Scroll through the doorway.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 pointer-events-auto" data-th-line>
+              <a href="#studies" class="bg-graphite text-chalk border border-chalk/20 font-bold px-8 py-4 rounded-full hover:bg-bronze hover:border-bronze hover:text-chalk transition-colors text-center text-sm uppercase tracking-[0.12em]">Explore the spaces</a>
+              <a href="#book" class="bg-graphite/45 backdrop-blur border border-chalk/25 text-chalk font-bold px-8 py-4 rounded-full hover:bg-chalk/15 transition-colors text-center text-sm uppercase tracking-[0.12em]">Discuss project →</a>
+            </div>
+          </div>
+
+          <div class="mt-8 border-t border-chalk/15 pt-4 flex flex-col md:flex-row md:items-center gap-4 justify-between" data-th-line>
+            <p id="threshold-caption" class="text-[11px] font-bold uppercase tracking-[0.2em] text-chalk/55">Fig. 01 — Warm minimal living room · White oak, limewash, linen</p>
+            <div class="flex gap-8 text-sm">
+              <div><p class="font-display text-2xl leading-none">18<span class="text-bronze">+</span></p><p class="text-chalk/50 text-[10px] uppercase tracking-[0.16em] mt-1 font-bold">yrs craft</p></div>
+              <div><p class="font-display text-2xl leading-none">1.2k<span class="text-bronze">+</span></p><p class="text-chalk/50 text-[10px] uppercase tracking-[0.16em] mt-1 font-bold">spaces</p></div>
+              <div><p class="font-display text-2xl leading-none">10<span class="text-bronze">-yr</span></p><p class="text-chalk/50 text-[10px] uppercase tracking-[0.16em] mt-1 font-bold">warranty</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const section = document.querySelector('[data-threshold]');
+  if (section) {
+    // intro
+    if (!reduced) {
+      gsap.fromTo('[data-th-line]', { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, stagger: 0.1, ease: 'power3.out', delay: 0.15 });
+      gsap.fromTo('#threshold-room', { scale: 1.12 }, { scale: 1, duration: 2.2, ease: 'power2.out' });
+    }
+
+    if (!reduced) {
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: section, start: 'top top', end: 'bottom bottom', scrub: 1 },
+      });
+      // dolly: room pushes gently forward as walls part
+      tl.fromTo('[data-threshold-roomwrap]', { scale: 1 }, { scale: 1.14, ease: 'none', duration: 1 }, 0);
+      tl.fromTo('[data-wall-left]', { xPercent: 0 }, { xPercent: -104, ease: 'none', duration: 1 }, 0);
+      tl.fromTo('[data-wall-right]', { xPercent: 0 }, { xPercent: 104, ease: 'none', duration: 1 }, 0);
+      tl.fromTo('[data-wall-top]', { yPercent: 0 }, { yPercent: -110, ease: 'none', duration: 1 }, 0);
+      tl.fromTo('[data-door-frame]', { scale: 1, opacity: 1 }, { scale: 1.6, opacity: 0, ease: 'none', duration: 0.55 }, 0);
+      // copy yields fully to the room — clean exit, no lingering ghost
+      tl.to('[data-threshold-title]', { y: -90, opacity: 0, ease: 'none', duration: 0.7 }, 0.25);
+      tl.to('[data-threshold-ui]', { opacity: 0, y: -20, ease: 'none', duration: 0.3 }, 0.1);
+      tl.to('[data-threshold-hint]', { opacity: 0, ease: 'none', duration: 0.2 }, 0);
+    }
+  }
+
+  // Living / Working toggle (photo-accurate swap, no fake tinting)
+  (function () {
+    const living = document.getElementById('threshold-room');
+    const working = document.getElementById('threshold-room-work');
+    const tabL = document.getElementById('tab-living');
+    const tabW = document.getElementById('tab-working');
+    const line2 = document.getElementById('threshold-line2');
+    const copy = document.getElementById('threshold-copy');
+    const cap = document.getElementById('threshold-caption');
+    if (!living || !working || !tabL || !tabW) return;
+    function setMode(mode: string) {
+      const isLiving = mode === 'living';
+      living.style.opacity = isLiving ? '1' : '0';
+      working.style.opacity = isLiving ? '0' : '1';
+      tabL!.setAttribute('aria-selected', String(isLiving));
+      tabW!.setAttribute('aria-selected', String(!isLiving));
+      const base = 'px-5 py-2.5 rounded-full text-[12px] font-bold uppercase tracking-[0.14em] transition-all ';
+      tabL!.className = base + (isLiving ? 'bg-chalk text-graphite' : 'text-chalk/70 hover:text-chalk');
+      tabW!.className = base + (!isLiving ? 'bg-chalk text-graphite' : 'text-chalk/70 hover:text-chalk');
+      if (line2) line2.textContent = isLiving ? 'Inside, your world.' : 'Inside, your studio.';
+      if (copy) copy.textContent = isLiving
+        ? 'Interiors for homes — thoughtfully planned, carefully built. Scroll through the doorway.'
+        : 'Interiors for workspaces that open fast and photograph well. One team, 30–60 days.';
+      if (cap) cap.textContent = isLiving
+        ? 'Fig. 01 — Warm minimal living room · White oak, limewash, linen'
+        : 'Fig. 02 — Daylight workspace · Ash timber, fluted glass, bronze';
+    }
+    tabL.addEventListener('click', () => setMode('living'));
+    tabW.addEventListener('click', () => setMode('working'));
+  })();
+</script>

@@ -1,15 +1,15 @@
 ---
-const items = ['Interior Design', 'Modular Kitchen', 'Wardrobes & Storage', 'Commercial Spaces', 'Factory-Direct', 'Bangalore'];
+const items = ['Considered living', 'Daylit workspaces', 'Honest materials', 'Factory precision', 'Bangalore atelier'];
 ---
 
-<div class="bg-ink text-cream py-4 overflow-hidden border-y border-cream/10">
+<div class="bg-graphite text-chalk py-4 overflow-hidden border-y border-chalk/10">
   <div id="marquee-inner" class="flex whitespace-nowrap animate-marquee gap-0 w-max">
     {[0,1].map((dup) => (
       <div class="flex items-center shrink-0" aria-hidden={dup === 1}>
         {items.map((t) => (
           <span class="flex items-center text-sm font-bold uppercase tracking-widest2">
             <span class="px-6">{t}</span>
-            <span class="text-brass">✦</span>
+            <span class="text-bronze">✦</span>
           </span>
         ))}
       </div>

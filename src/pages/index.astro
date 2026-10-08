@@ -1,34 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
+import ThresholdHero from '../components/ThresholdHero.astro';
 import Marquee from '../components/Marquee.astro';
-import FactoryStory from '../components/FactoryStory.astro';
-import Services from '../components/Services.astro';
-import Process from '../components/Process.astro';
-import About from '../components/About.astro';
-import Work from '../components/Work.astro';
+import Studies from '../components/Studies.astro';
+import RoomTour from '../components/RoomTour.astro';
+import Atelier from '../components/Atelier.astro';
+import Crafts from '../components/Crafts.astro';
+import Studio from '../components/Studio.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Faq from '../components/Faq.astro';
 import Booking from '../components/Booking.astro';
-import Portal from '../components/Portal.astro';
-import SceneSlate from '../components/SceneSlate.astro';
-import PlankFlip from '../components/PlankFlip.astro';
 ---
 
 <BaseLayout>
-  <Hero />
+  <ThresholdHero />
   <Marquee />
-  <FactoryStory />
-  <Portal />
-  <Services />
-  <SceneSlate scene="03" title="THE PROCESS" note="Cut — 45 days, zero outsourcing" />
-  <Process />
-  <PlankFlip />
-  <About />
-  <Work />
-  <SceneSlate scene="05" title="THE VERDICT" note="Cut — Bangalore has the mic" />
+  <Studies />
+  <RoomTour />
+  <Atelier />
+  <Crafts />
+  <Studio />
   <Testimonials />
   <Faq />
-  <SceneSlate scene="07" title="FINAL SCENE" note="Cut — your home, action" />
   <Booking />
 </BaseLayout>

@@ -2,45 +2,46 @@
 import { SITE } from '../data/content';
 ---
 
-<footer class="bg-ink text-cream mt-0">
-  <div class="max-w-7xl mx-auto px-5 md:px-8 py-14 grid md:grid-cols-4 gap-10">
+<footer class="bg-graphite text-chalk">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10 py-14 grid md:grid-cols-4 gap-10">
     <div>
       <div class="flex items-center gap-3 mb-4">
-        <span class="w-9 h-9 rounded-xl bg-cream text-ink grid place-items-center font-display text-lg font-semibold">V</span>
-        <span class="font-display text-xl">VJS Studios</span>
+        <span class="w-10 h-10 rounded-full bg-chalk text-graphite grid place-items-center font-display text-xl">V</span>
+        <span class="font-display text-xl">VJS <span class="italic">Atelier</span></span>
       </div>
-      <p class="text-cream/60 text-sm leading-relaxed">Factory-backed interior studio in Bangalore. Homes, kitchens, wardrobes & commercial spaces — designed, built and installed by one team.</p>
+      <p class="text-chalk/55 text-sm leading-relaxed">Bangalore design atelier backed by its own factory. Homes, kitchens, wardrobes & workspaces — composed, built and installed by one team.</p>
+      <p class="mt-4 text-[11px] font-bold uppercase tracking-[0.18em] text-bronze">Concept visuals · photography at launch</p>
     </div>
     <div>
-      <h4 class="text-xs uppercase tracking-widest2 text-cream/50 mb-4">Explore</h4>
+      <h4 class="text-[11px] uppercase tracking-[0.18em] text-chalk/40 mb-4 font-bold">Explore</h4>
       <ul class="space-y-2.5 text-sm font-semibold">
-        <li><a href="#story" class="hover:text-brass">Our Story</a></li>
-        <li><a href="#services" class="hover:text-brass">Services</a></li>
-        <li><a href="#about" class="hover:text-brass">About Us</a></li>
-        <li><a href="#work" class="hover:text-brass">Work</a></li>
-        <li><a href="#testimonials" class="hover:text-brass">Testimonials</a></li>
-        <li><a href="#faqs" class="hover:text-brass">FAQs</a></li>
+        <li><a href="#studies" class="hover:text-bronze">Design studies</a></li>
+        <li><a href="#atelier" class="hover:text-bronze">Compose your space</a></li>
+        <li><a href="#services" class="hover:text-bronze">Crafts</a></li>
+        <li><a href="#about" class="hover:text-bronze">The studio</a></li>
+        <li><a href="#testimonials" class="hover:text-bronze">Word of mouth</a></li>
+        <li><a href="#faqs" class="hover:text-bronze">FAQs</a></li>
       </ul>
     </div>
     <div>
-      <h4 class="text-xs uppercase tracking-widest2 text-cream/50 mb-4">Services</h4>
-      <ul class="space-y-2.5 text-sm text-cream/80">
-        <li>Interior Design</li>
-        <li>Modular Kitchen</li>
-        <li>Wardrobes & Storages</li>
-        <li>Commercial Spaces</li>
+      <h4 class="text-[11px] uppercase tracking-[0.18em] text-chalk/40 mb-4 font-bold">Crafts</h4>
+      <ul class="space-y-2.5 text-sm text-chalk/70">
+        <li>Full home interiors</li>
+        <li>Modular kitchens</li>
+        <li>Wardrobes & storage</li>
+        <li>Offices · retail · clinics</li>
       </ul>
     </div>
     <div>
-      <h4 class="text-xs uppercase tracking-widest2 text-cream/50 mb-4">Visit / Call</h4>
-      <p class="text-sm text-cream/80 leading-relaxed">{SITE.address}<br />{SITE.hours}<br />{SITE.phoneDisplay}<br />{SITE.email}</p>
-      <a href="#book" class="inline-block mt-4 bg-cream text-ink text-sm font-bold px-5 py-2.5 rounded-full">Book Consultation</a>
+      <h4 class="text-[11px] uppercase tracking-[0.18em] text-chalk/40 mb-4 font-bold">Visit / Call</h4>
+      <p class="text-sm text-chalk/70 leading-relaxed">{SITE.address}<br />{SITE.hours}<br />{SITE.phoneDisplay}<br />{SITE.email}</p>
+      <a href="#book" class="inline-block mt-4 bg-chalk text-graphite text-[12px] font-bold uppercase tracking-[0.12em] px-5 py-3 rounded-full hover:bg-bronze hover:text-chalk transition-colors">Discuss project</a>
     </div>
   </div>
-  <div class="border-t border-cream/10">
-    <div class="max-w-7xl mx-auto px-5 md:px-8 py-5 flex flex-col md:flex-row gap-2 items-center justify-between text-xs text-cream/50">
+  <div class="border-t border-chalk/10">
+    <div class="max-w-[1400px] mx-auto px-5 md:px-10 py-5 flex flex-col md:flex-row gap-2 items-center justify-between text-xs text-chalk/40">
       <span>© 2026 VJS Studios · Bangalore, India. All rights reserved.</span>
-      <span>Factory-direct · 10-year warranty · Made in Bangalore</span>
+      <span>Design-led · Factory-backed · 10-year warranty</span>
     </div>
   </div>
 </footer>

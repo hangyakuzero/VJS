@@ -1,0 +1,186 @@
+---
+const ROOMS = [
+  {
+    id: 'hearth',
+    no: '01',
+    name: 'The Hearth',
+    desc: 'East-facing living room — pale oak, limewash, linen. Daylight does the decorating.',
+    img: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop',
+    alt: 'Warm minimal living room with considered materials',
+  },
+  {
+    id: 'kitchen',
+    no: '02',
+    name: 'The Kitchen',
+    desc: 'Built around the cook — island, tall pantry, smoked ash and stone that wipe clean.',
+    img: 'https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?q=80&w=2000&auto=format&fit=crop',
+    alt: 'Considered kitchen with island and tailored joinery',
+  },
+  {
+    id: 'studio',
+    no: '03',
+    name: 'The Studio',
+    desc: 'The adjoining workspace — fluted glass, bronze, daylight for making decisions.',
+    img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop',
+    alt: 'Daylit creative studio workspace',
+  },
+];
+---
+
+<section id="tour" data-tour class="relative bg-graphite text-chalk">
+  <div data-tour-track class="relative h-[420vh] md:h-[460vh]">
+    <div data-tour-stage class="sticky top-0 h-[100svh] overflow-hidden">
+      <!-- room layers -->
+      {ROOMS.map((r, i) => (
+        <div data-tour-room={r.id} class="absolute inset-0" style={i === 0 ? 'opacity: 1; z-index: 1;' : 'opacity: 0; z-index: 1;'}>
+          <div data-tour-photo class="absolute inset-[-3%]">
+            <img src={r.img} alt={r.alt} loading={i === 0 ? 'eager' : 'lazy'} class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-graphite/15 to-graphite/25"></div>
+        </div>
+      ))}
+
+      <!-- doorway beat: thin bronze arch pulses at each transition -->
+      <div class="absolute inset-0 z-20 pointer-events-none grid place-items-center" data-tour-arch aria-hidden="true">
+        <div class="rounded-t-[999px] rounded-b-[24px] border border-bronze/50" style="width: min(46vw, 420px); height: 62vh; box-shadow: 0 0 0 1px rgba(176,141,87,.18);"></div>
+      </div>
+
+      <!-- top bar -->
+      <div class="absolute top-[72px] inset-x-0 z-30">
+        <div class="max-w-[1400px] mx-auto px-5 md:px-10 pt-6 flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.22em] text-chalk/80">
+          <span class="flex items-center gap-3"><span class="w-10 h-px bg-bronze inline-block"></span> Walkthrough — one home + studio</span>
+          <span id="tour-counter" class="tabular-nums">01 / 03</span>
+        </div>
+      </div>
+
+      <!-- chapter dots -->
+      <nav class="absolute right-5 md:right-8 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-4" aria-label="Rooms">
+        {ROOMS.map((r, i) => (
+          <button data-tour-dot={r.id} aria-label={r.name} class="group flex items-center gap-3 justify-end">
+            <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-chalk/0 group-hover:text-chalk/80 transition-all">{r.name}</span>
+            <span data-tour-mark class="block w-1.5 h-1.5 rounded-full bg-chalk/40 transition-all" style={i === 0 ? 'background:#B08D57; transform: scale(1.9);' : ''}></span>
+          </button>
+        ))}
+      </nav>
+
+      <!-- captions -->
+      <div class="absolute inset-x-0 bottom-0 z-30">
+        <div class="max-w-[1400px] mx-auto px-5 md:px-10 pb-10 md:pb-14">
+          <div class="grid" data-tour-captions>
+            {ROOMS.map((r, i) => (
+              <div data-tour-caption={r.id} style={i === 0 ? 'opacity: 1;' : 'opacity: 0;'} class="col-start-1 row-start-1 pointer-events-none">
+                <p class="text-[11px] font-bold uppercase tracking-[0.22em] text-bronze mb-3">Room {r.no} — {r.name}</p>
+                <p class="font-display font-medium text-4xl md:text-6xl leading-[0.95] tracking-tight max-w-2xl">{r.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div class="relative z-10 mt-6 flex flex-wrap items-center gap-4">
+            <a href="#atelier" class="bg-chalk text-graphite text-[12px] font-bold uppercase tracking-[0.12em] px-7 py-4 rounded-full hover:bg-bronze hover:text-chalk transition-colors">Choose its materials ↓</a>
+            <a href="#book" class="border border-chalk/30 text-[12px] font-bold uppercase tracking-[0.12em] px-7 py-4 rounded-full hover:bg-chalk/10 transition-colors">Discuss project →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute top-0 left-0 h-[2px] bg-bronze z-40 w-0" data-tour-progress></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* reduced-motion / no-scrub fallback: plain stacked rooms, no empty track */
+  .tour-static [data-tour-track] { height: auto !important; }
+  .tour-static [data-tour-stage] { position: static !important; height: auto !important; }
+  .tour-static [data-tour-room] { position: relative !important; opacity: 1 !important; height: 72vh; }
+  .tour-static [data-tour-arch],
+  .tour-static [data-tour-progress] { display: none !important; }
+  .tour-static [data-tour-captions] { display: block !important; }
+  .tour-static [data-tour-caption] { opacity: 1 !important; padding: 1.25rem 0 2.5rem; }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.querySelector('[data-tour]');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (section && reduced) section.classList.add('tour-static');
+
+  if (section && !reduced) {
+    const rooms = Array.from(section.querySelectorAll('[data-tour-room]'));
+    const photos = Array.from(section.querySelectorAll('[data-tour-photo]'));
+    const captions = Array.from(section.querySelectorAll('[data-tour-caption]'));
+    const arch = section.querySelector('[data-tour-arch]');
+    const bar = section.querySelector('[data-tour-progress]');
+    const counter = section.querySelector('#tour-counter');
+    const dots = Array.from(section.querySelectorAll('[data-tour-dot]'));
+    const marks = Array.from(section.querySelectorAll('[data-tour-mark]'));
+
+    function setActive(idx: number) {
+      rooms.forEach((r, i) => { (r as HTMLElement).style.zIndex = i === idx ? '2' : '1'; });
+      marks.forEach((m, i) => {
+        (m as HTMLElement).style.background = i === idx ? '#B08D57' : 'rgba(250,250,247,.4)';
+        (m as HTMLElement).style.transform = i === idx ? 'scale(1.9)' : 'scale(1)';
+      });
+      if (counter) counter.textContent = `0${idx + 1} / 0${rooms.length}`;
+    }
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section, start: 'top top', end: 'bottom bottom', scrub: 1,
+        onUpdate: (self) => {
+          if (bar) (bar as HTMLElement).style.width = `${self.progress * 100}%`;
+          setActive(Math.min(rooms.length - 1, Math.floor(self.progress * rooms.length)));
+        },
+      },
+    });
+
+    // Room 1: settle, then push forward + drift (walking toward the kitchen)
+    tl.fromTo(photos[0], { scale: 1, xPercent: 0 }, { scale: 1.12, xPercent: -2.5, ease: 'none', duration: 1 }, 0);
+    tl.to(captions[0], { opacity: 0, y: -50, ease: 'none', duration: 0.35 }, 0.55);
+    // arch breathes at the doorway beat
+    if (arch) {
+      tl.fromTo(arch, { opacity: 0.25, scale: 1 }, { opacity: 1, scale: 1.12, ease: 'none', duration: 0.3 }, 0.6);
+      tl.to(arch, { opacity: 0.25, scale: 1.22, ease: 'none', duration: 0.3 }, 0.9);
+    }
+    // Room 2 arrives
+    tl.fromTo(rooms[1], { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.3 }, 0.75);
+    tl.fromTo(photos[1], { scale: 1.16, xPercent: 2.5 }, { scale: 1, xPercent: 0, ease: 'none', duration: 0.7 }, 0.75);
+    tl.fromTo(captions[1], { opacity: 0, y: 60 }, { opacity: 1, y: 0, ease: 'none', duration: 0.3 }, 1.0);
+    // Room 2 → 3: push + drift the other way (through the glazed partition)
+    tl.to(photos[1], { scale: 1.12, xPercent: 2.5, ease: 'none', duration: 0.8 }, 1.5);
+    tl.to(captions[1], { opacity: 0, y: -50, ease: 'none', duration: 0.3 }, 1.8);
+    if (arch) {
+      tl.fromTo(arch, { opacity: 0.25, scale: 1 }, { opacity: 1, scale: 1.12, ease: 'none', duration: 0.3 }, 1.85);
+      tl.to(arch, { opacity: 0, scale: 1.22, ease: 'none', duration: 0.3 }, 2.15);
+    }
+    tl.fromTo(rooms[2], { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.3 }, 2.0);
+    tl.fromTo(photos[2], { scale: 1.16, xPercent: -2 }, { scale: 1.04, xPercent: 0, ease: 'none', duration: 0.9 }, 2.0);
+    tl.fromTo(captions[2], { opacity: 0, y: 60 }, { opacity: 1, y: 0, ease: 'none', duration: 0.3 }, 2.25);
+
+    // gentle pointer look-around (fine pointers only)
+    if (window.matchMedia('(pointer: fine)').matches) {
+      const qx = photos.map((p) => gsap.quickTo(p, 'x', { duration: 0.9, ease: 'power2.out' }));
+      const qy = photos.map((p) => gsap.quickTo(p, 'y', { duration: 0.9, ease: 'power2.out' }));
+      let active = 0;
+      ScrollTrigger.create({
+        trigger: section, start: 'top top', end: 'bottom bottom', scrub: false,
+        onUpdate: (self) => { active = Math.min(photos.length - 1, Math.floor(self.progress * photos.length)); },
+      });
+      section.addEventListener('mousemove', (e: any) => {
+        const nx = (e.clientX / window.innerWidth - 0.5) * 28;
+        const ny = (e.clientY / window.innerHeight - 0.5) * 18;
+        qx[active](nx); qy[active](ny);
+      });
+    }
+
+    // dots jump to rooms
+    dots.forEach((d, i) => d.addEventListener('click', () => {
+      const track = section.querySelector('[data-tour-track]');
+      if (!track) return;
+      const y = (track as HTMLElement).offsetTop + ((track as HTMLElement).offsetHeight * (i + 0.15)) / rooms.length;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }));
+    setActive(0);
+  }
+</script>

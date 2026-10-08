@@ -3,17 +3,17 @@ import SectionHeading from './SectionHeading.astro';
 import { TESTIMONIALS } from '../data/content';
 ---
 
-<section id="testimonials" class="py-20 md:py-32 scroll-mt-20 overflow-hidden">
-  <div class="max-w-7xl mx-auto px-5 md:px-8">
+<section id="testimonials" class="py-20 md:py-32 bg-chalk scroll-mt-20 overflow-hidden">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-      <SectionHeading eyebrow="Testimonials" title="Loved across Bangalore." desc="5-star rated by homeowners, doctors and founders. Names and areas are placeholders — swap in real Google reviews at launch." />
+      <SectionHeading eyebrow="Word of mouth" title="Quietly loved across Bangalore." desc="Homeowners, doctors and founders on working with one accountable team. Illustrative quotes — real Google reviews go live at launch." />
       <div class="flex gap-3 shrink-0" data-reveal>
         <button id="t-prev" aria-label="Previous" class="w-12 h-12 rounded-full border border-ink/15 grid place-items-center hover:bg-ink hover:text-cream transition-colors">←</button>
         <button id="t-next" aria-label="Next" class="w-12 h-12 rounded-full border border-ink/15 grid place-items-center hover:bg-ink hover:text-cream transition-colors">→</button>
       </div>
     </div>
   </div>
-  <div class="max-w-7xl mx-auto pl-5 md:pl-8 mt-10">
+  <div class="max-w-[1400px] mx-auto pl-5 md:pl-10 mt-10">
     <div id="t-track" class="flex gap-5 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-2 pr-5" data-reveal>
       {TESTIMONIALS.map((t) => (
         <article class="snap-start shrink-0 w-[86vw] sm:w-[420px] bg-white border border-ink/8 rounded-3xl p-8 shadow-[0_10px_40px_rgba(28,25,23,0.06)] flex flex-col">

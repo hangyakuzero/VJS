@@ -1,0 +1,63 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { PROCESS, SERVICES } from '../data/content';
+---
+
+<section id="services" class="py-20 md:py-32 bg-chalk scroll-mt-20">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <SectionHeading eyebrow="What we compose" title="Four crafts. One accountable team." desc="From full homes to single kitchens — sized in 3D, built on our own machines, installed dust-controlled." />
+      <a href="#book" class="shrink-0 bg-graphite text-chalk text-[12px] font-bold uppercase tracking-[0.12em] px-6 py-3.5 rounded-full hover:bg-aubergine transition-colors" data-reveal>Get fixed quote →</a>
+    </div>
+
+    <div class="mt-10 grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      {SERVICES.map((s, i) => (
+        <article class="group rounded-[24px] overflow-hidden bg-white border border-ink/10 lift flex flex-col" data-reveal>
+          <div class="relative h-[220px] overflow-hidden">
+            <img src={s.img} alt={s.title} loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <span class="absolute top-4 left-4 bg-graphite/85 backdrop-blur text-chalk text-[11px] font-bold uppercase tracking-[0.12em] px-3.5 py-2 rounded-full">{s.no} · {s.price}</span>
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <h3 class="font-display text-[22px] leading-tight">{s.title}</h3>
+            <p class="mt-2 text-sm text-smoke leading-relaxed flex-1">{s.desc}</p>
+            <ul class="mt-4 space-y-2">
+              {s.points.slice(0,2).map((p) => (
+                <li class="flex items-start gap-2 text-[13px] font-semibold text-ink/70"><span class="mt-0.5 w-4.5 h-4.5 w-[18px] h-[18px] rounded-full bg-bronze/15 text-wood grid place-items-center text-[11px]">✓</span>{p}</li>
+              ))}
+            </ul>
+            <a href="#book" class="mt-5 text-[12px] font-bold uppercase tracking-[0.12em] text-graphite group-hover:text-wood transition-colors">Enquire →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="pb-20 md:pb-32 bg-chalk">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10">
+    <div class="rounded-[32px] overflow-hidden bg-aubergine text-chalk p-8 md:p-14 relative">
+      <div class="absolute -top-32 -left-32 w-[480px] h-[480px] rounded-full bg-bronze/15 blur-[120px]"></div>
+      <div class="absolute -bottom-40 -right-20 w-[420px] h-[420px] rounded-full bg-ember/10 blur-[120px]"></div>
+      <div class="relative">
+        <SectionHeading dark eyebrow="Delivery — 45 to 60 days" title="Design to handover, without the fog." desc="A fixed factory-driven pipeline. You always know what happens next — and what it costs." />
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {PROCESS.map((p, i) => (
+            <div class="rounded-3xl border border-chalk/12 bg-chalk/[0.04] p-6 flex flex-col hover:border-bronze/60 hover:bg-chalk/[0.07] transition-all lift" data-reveal>
+              <div class="flex items-center justify-between mb-5">
+                <span class="font-display text-4xl text-chalk/25">{p.no}</span>
+                <span class="text-[10px] font-bold uppercase tracking-[0.14em] bg-bronze/15 text-bronze px-3 py-1.5 rounded-full">{p.time}</span>
+              </div>
+              <h3 class="font-display text-lg leading-snug">{p.title}</h3>
+              <p class="text-chalk/55 text-[13px] leading-relaxed mt-2 flex-1">{p.desc}</p>
+              {i < 3 && <p class="mt-5 text-bronze">→</p>}
+            </div>
+          ))}
+        </div>
+        <div class="mt-6 flex flex-col sm:flex-row items-center gap-4 justify-between bg-chalk text-graphite rounded-3xl p-6 md:p-7" data-reveal>
+          <p class="font-display text-xl md:text-2xl">Free site measurement anywhere in Bangalore, this week.</p>
+          <a href="#book" class="shrink-0 bg-graphite text-chalk text-[12px] font-bold uppercase tracking-[0.12em] px-7 py-4 rounded-full hover:bg-aubergine transition-colors">Book consultation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
